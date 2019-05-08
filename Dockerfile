@@ -42,7 +42,8 @@ RUN sed -i -e 's/\(exec ".*"\) start/\1 run/' ${PENTAHO_SERVER}/tomcat/bin/start
 USER root
 COPY scripts ${PENTAHO_HOME}/scripts
 COPY config ${PENTAHO_HOME}/config
-RUN chown -R pentaho:pentaho ${PENTAHO_HOME}/scripts && chmod -R +x ${PENTAHO_HOME}/scripts
+RUN chown -R pentaho:0 ${PENTAHO_HOME} && chmod -R +x ${PENTAHO_HOME}/scripts \
+	&& chmod -R g=u ${PENTAHO_HOME}
 USER pentaho
 
 # Volumes:
