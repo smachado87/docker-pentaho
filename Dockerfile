@@ -3,8 +3,6 @@ MAINTAINER Jonathan DeMarks
 # Based on work done by Wellington Marinho (https://github.com/wmarinho/docker-pentaho)
 # Note: Really, really requires Postgres 9.5, any higher version will break without an updated driver (in commented section below).
 
-ENV MAJOR_VERSION 7.0
-ENV MINOR_VERSION 7.0.0.0-25
 ENV PENTAHO_HOME /opt/pentaho
 ENV PENTAHO_JAVA_HOME $JAVA_HOME
 ENV PENTAHO_SERVER ${PENTAHO_HOME}/server/pentaho-server
@@ -19,7 +17,7 @@ USER pentaho
 WORKDIR ${PENTAHO_HOME}/server
 
 # Get Pentaho Server
-RUN echo http://downloads.sourceforge.net/project/pentaho/Business%20Intelligence%20Server/${MAJOR_VERSION}/pentaho-server-ce-${MINOR_VERSION}.zip | xargs wget -qO- -O tmp.zip && \
+RUN echo https://razaoinfo.dl.sourceforge.net/project/pentaho/Pentaho%208.2/server/pentaho-server-ce-8.2.0.0-342.zip | xargs wget -qO- -O tmp.zip && \
     unzip -q tmp.zip -d ${PENTAHO_HOME}/server && \
     rm -f tmp.zip
 
